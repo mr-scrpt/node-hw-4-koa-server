@@ -42,8 +42,6 @@ module.exports.sendMsg = async(ctx) => {
 
 };
 
-
-
 module.exports.loginPage = async (ctx)=>{
   try {
     const data = await ENGINE.emit('login/get');
@@ -55,7 +53,6 @@ module.exports.loginPage = async (ctx)=>{
   }
 };
 
-
 module.exports.auth = async (ctx) => {
   try {
     await auth(ctx.request);
@@ -66,8 +63,6 @@ module.exports.auth = async (ctx) => {
   }
 
 };
-
-
 
 module.exports.adminPage = async (ctx) => {
   const [msgskill] = ctx.flash('msgskill');
@@ -93,8 +88,10 @@ module.exports.skillsEdited = async (ctx) => {
 };
 
 module.exports.uploadWorks = async (ctx) => {
-	//console.log(ctx.request.files);
-  try{
+	const fields = JSON.parse(JSON.stringify(ctx.request.body));
+	//console.log(ctx.request.file);
+	console.log(ctx.request.body);
+  /*try{
     const {data} = await uploader(ctx.request);
     await ENGINE.emit('admin/addWork', data);
 		ctx.flash('msgfile', 'Файл успешно загружен');
@@ -102,7 +99,7 @@ module.exports.uploadWorks = async (ctx) => {
   }catch (err) {
 		await ctx.flash('msgfile', `Ошибка при загрузке файла ${err.message}`);
 		await ctx.redirect('/admin');
-  }
+  }*/
 };
 
 

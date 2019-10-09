@@ -1,4 +1,4 @@
-const formidable = require('formidable');
+//const formidable = require('formidable');
 const fs = require('fs');
 const path = require('path');
 const validator = require('../../libs/validators/uploadWorksFormValidator');
@@ -21,7 +21,7 @@ const uploader = (req) => {
 		form.uploadDir = path.join(process.cwd(), upload);
 
 
-		form.parse(req, async (err, fields, files) => {
+		/*form.parse(req, async (err, fields, files) => {
 			try {
 				if(err){
 					reject({status: "err", message: err});
@@ -49,7 +49,8 @@ const uploader = (req) => {
 				reject({status: "err", message: e.message});
 			}
 
-		});
+		});*/
+
 	});
 
 };

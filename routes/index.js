@@ -1,7 +1,14 @@
 const Router = require('koa-router');
 const router = new Router();
 const controllers = require('../constrollers');
-const koaBody = require('koa-body');
+
+const multer  = require('@koa/multer');
+const path = require('path');
+const upload = multer(
+	{
+		dest: path.resolve( process.cwd() + '/public/upload' )
+	}
+);
 
 router.get('/',  controllers.indexPage);
 router.post('/',  controllers.sendMsg);
@@ -9,12 +16,7 @@ router.get('/login',  controllers.loginPage);
 router.post('/login',  controllers.auth);
 router.get('/admin',  controllers.adminPage);
 router.post('/admin/skills',  controllers.skillsEdited);
-router.post('/admin/upload',  koaBody({
-	multipart: true,
-	formidable: {
-		uploadDir: process.cwd() + '/public/upload'
-	}
-}), controllers.uploadWorks);
+router.post('/admin/upload',  upload.single('photo'), controllers.uploadWorks);
 
 
 /*

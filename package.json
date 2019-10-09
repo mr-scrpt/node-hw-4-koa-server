@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hapi/joi": "^16.1.7",
+    "@koa/multer": "^2.0.0",
     "@nauma/eventemitter": "^1.0.7",
     "debug": "^4.1.1",
     "dotenv": "^8.1.0",
@@ -26,7 +27,6 @@
     "koa-session": "^5.12.3",
     "koa-static": "^5.0.0",
     "koa-views": "^6.2.0",
-    "koa2-formidable": "^1.0.2",
     "lowdb": "^1.0.0",
     "nodemailer": "^6.3.1",
     "pug": "^2.0.4"

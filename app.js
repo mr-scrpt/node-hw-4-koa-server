@@ -24,10 +24,12 @@ onerror(app);
 const config = require('./config');
 // middlewares
 app.use(bodyparser({
-  enableTypes:['json', 'form', 'text']
+  enableTypes:['json', 'form', 'text'],
+
 }));
-app.use(session(config.session, app));
 app.use(json());
+app.use(session(config.session, app));
+
 app.use(logger());
 app.use(flash());
 app.use(require('koa-static')(path.join(__dirname, 'public')));
