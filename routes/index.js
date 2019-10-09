@@ -1,6 +1,13 @@
-const router = require('koa-router')()
+const Router = require('koa-router');
+const router = new Router();
+const controllers = require('../constrollers');
 
-router.get('/', async (ctx, next) => {
+
+
+
+router.get('/',  controllers.indexPage);
+
+/*router.get('/', async (ctx, next) => {
   await ctx.render('index', {
     title: 'Hello Koa 2!'
   })
@@ -14,6 +21,6 @@ router.get('/json', async (ctx, next) => {
   ctx.body = {
     title: 'koa2 json'
   }
-})
+})*/
 
-module.exports = router
+module.exports = router;
