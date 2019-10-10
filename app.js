@@ -3,7 +3,8 @@ const app = new Koa();
 const views = require('koa-views');
 const json = require('koa-json');
 const onerror = require('koa-onerror');
-const bodyparser = require('koa-bodyparser');
+//const bodyparser = require('koa-bodyparser');
+
 const logger = require('koa-logger');
 const session = require('koa-session');
 const flash = require('koa-connect-flash');
@@ -23,11 +24,12 @@ require('./database');
 onerror(app);
 const config = require('./config');
 // middlewares
-app.use(bodyparser({
+/*app.use(bodyparser({
   enableTypes:['json', 'form', 'text'],
 
-}));
+}));*/
 app.use(json());
+
 app.use(session(config.session, app));
 
 app.use(logger());
