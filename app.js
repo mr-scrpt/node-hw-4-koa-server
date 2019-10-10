@@ -10,8 +10,8 @@ const flash = require('koa-connect-flash');
 const path = require('path');
 
 
-const formidable = require('koa2-formidable');
-//const index = require('./routes/index');
+
+
 const route = require('./routes');
 
 require('dotenv').config();

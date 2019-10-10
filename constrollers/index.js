@@ -88,7 +88,7 @@ module.exports.skillsEdited = async (ctx) => {
 };
 
 module.exports.uploadWorks = async (ctx) => {
-	const fields = JSON.parse(JSON.stringify(ctx.request.body));
+	//const fields = JSON.parse(JSON.stringify(ctx.request.body));
 	//console.log(ctx.request.file);
 	console.log(ctx.request.body);
   /*try{
