@@ -1,3 +1,4 @@
+require('dotenv').config();
 const Koa = require('koa');
 const app = new Koa();
 const views = require('koa-views');
@@ -15,7 +16,7 @@ const path = require('path');
 
 const route = require('./routes');
 
-require('dotenv').config();
+
 require('./buses');
 require('./engine');
 require('./database');

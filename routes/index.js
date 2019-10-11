@@ -1,14 +1,7 @@
 const Router = require('koa-router');
 const router = new Router();
 const controllers = require('../constrollers');
-
-const multer  = require('@koa/multer');
-const path = require('path');
-const upload = multer(
-	{
-		dest: path.resolve( process.cwd() + '/public/upload' )
-	}
-);
+const uploaderWithHandlerError  = require('../middleware/uploaderWithHandlerError');
 
 router.get('/',  controllers.indexPage);
 router.post('/',  controllers.sendMsg);
@@ -16,7 +9,7 @@ router.get('/login',  controllers.loginPage);
 router.post('/login',  controllers.auth);
 router.get('/admin',  controllers.adminPage);
 router.post('/admin/skills',  controllers.skillsEdited);
-router.post('/admin/upload',  upload.single('photo'), controllers.uploadWorks);
+router.post('/admin/upload',  uploaderWithHandlerError, controllers.uploadWorks);
 
 
 /*

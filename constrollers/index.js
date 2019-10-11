@@ -88,18 +88,38 @@ module.exports.skillsEdited = async (ctx) => {
 };
 
 module.exports.uploadWorks = async (ctx) => {
-	//const fields = JSON.parse(JSON.stringify(ctx.request.body));
-	//console.log(ctx.request.file);
-	console.log(ctx.request.body);
-  /*try{
-    const {data} = await uploader(ctx.request);
-    await ENGINE.emit('admin/addWork', data);
+	const fields = JSON.parse(JSON.stringify(ctx.request.body));
+	const {file:{path, filename}} = ctx.request;
+	const {name: workName, price} = fields;
+
+	const staticFileDest = '.' + path.substr(path.indexOf('\\'));
+
+	const data = {
+		"src": staticFileDest,
+		"name": workName,
+		"price": +price
+	};
+try{
+	await ENGINE.emit('admin/addWork', data);
+	ctx.flash('msgfile', 'Файл успешно загружен');
+	await ctx.redirect('/admin');
+}catch (err) {
+	await ctx.flash('msgfile', `Ошибка при загрузке файла ${err.message}`);
+	await ctx.redirect('/admin');
+}
+
+
+
+  //try{
+    //const {data} = await uploader(fields, file);
+    //console.log(data);
+    /*await ENGINE.emit('admin/addWork', data);
 		ctx.flash('msgfile', 'Файл успешно загружен');
-		await ctx.redirect('/admin');
-  }catch (err) {
-		await ctx.flash('msgfile', `Ошибка при загрузке файла ${err.message}`);
-		await ctx.redirect('/admin');
-  }*/
+		await ctx.redirect('/admin');*/
+  //}catch (err) {
+		/*await ctx.flash('msgfile', `Ошибка при загрузке файла ${err.message}`);
+		await ctx.redirect('/admin');*/
+  //}
 };
 
 

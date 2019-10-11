@@ -45,13 +45,23 @@
     "price": 600
   },
   {
-    "src": ".\\img\\products\\Work10.jpg",
-    "name": "TestName",
-    "price": 500
+    "src": ".\\img\\products\\Work11.jpg",
+    "name": "Work11.jpg",
+    "price": 700
   },
   {
-    "src": ".\\img\\products\\Work11.jpg",
-    "name": "TestName",
-    "price": 500
+    "src": ".\\img\\products\\Work12.jpg",
+    "name": "Work12.jpg",
+    "price": 700
+  },
+  {
+    "src": ".\\img\\products\\Work13.jpg",
+    "name": "ffffff",
+    "price": 700
+  },
+  {
+    "src": ".\\img\\products\\Work14.jpg",
+    "name": "ffffff",
+    "price": 700
   }
 ]

@@ -8,10 +8,32 @@ const rename = promisify(fs.rename);
 const unlink = promisify(fs.unlink);
 
 
-const uploader = (req) => {
-	return new Promise((resolve, reject) => {
+const uploader = (fields, file) => {
+	return new Promise(async (resolve, reject) => {
+		const { name, price } = fields;
 
-		const form = new formidable.IncomingForm();
+		const tempFileDest = path.join(file.path);
+		console.log('test here');
+		const upload = path.normalize(process.env.UP_LOAD_WORKS_PATH);
+		const originalFileExt = path.extname(file.originalname);
+		const count = await countFile(upload);
+		const finalFileName = `Work${count}${originalFileExt}`;
+		const targetFileDest = path.join(upload, finalFileName);
+		const data = {
+			"name": name,
+			"price": +price
+		};
+
+		try {
+			await rename(tempFileDest, targetFileDest);
+			resolve({status: "success", message: "Обработка формы успешна", data: data});
+		}catch (e) {
+			await unlink(tempFileDest);
+			reject({status: "err", message: e.message});
+		}
+
+
+		/*const form = new formidable.IncomingForm();
 		let upload = path.normalize(process.env.UP_LOAD_WORKS_PATH);
 
 		if (!fs.existsSync(upload)) {
@@ -19,7 +41,7 @@ const uploader = (req) => {
 		}
 
 		form.uploadDir = path.join(process.cwd(), upload);
-
+*/
 
 		/*form.parse(req, async (err, fields, files) => {
 			try {
